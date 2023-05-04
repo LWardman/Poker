@@ -7,10 +7,11 @@
 
 #include <utility>
 #include "Deck.h"
+#include "Player.h"
 
 class Table {
 public:
-    Table(unsigned int NumPlayers)
+    explicit Table(unsigned int NumPlayers)
     {
         for (int i = 0; i < NumPlayers; i++)
         {
