@@ -3,4 +3,4 @@ project(Cards)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(Cards main.cpp Card.h Deck.h Player.h)
+add_executable(Cards main.cpp Card.h Deck.h Player.h Table.h)

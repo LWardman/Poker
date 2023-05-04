@@ -1,7 +1,8 @@
 #include <iostream>
+#include <vector>
 #include "Deck.h"
 #include "Player.h"
-#include <vector>
+#include "Table.h"
 
 int main()
 {
@@ -16,38 +17,15 @@ int main()
 
     int NumPlayers = 8;
 
-    std::vector<Player*> players;
+    auto* table = new Table(NumPlayers, deck);
 
-    for (int i = 0; i < NumPlayers; i++)
-    {
-        Player* player = new Player();
-        players.push_back(player);
-    }
+    table->DealCards();
 
-    Player* flop = new Player();
+    table->DealFlop();
 
-    for (Player* player : players)
-    {
-        player->addCard(deck.drawCard());
-        player->addCard(deck.drawCard());
-    }
+    table->ShowAllHands();
 
-
-    for (int i = 0; i < 5; i++)
-    {
-        flop->addCard(deck.drawCard());
-    }
-
-    for (Player* player : players)
-    {
-        std::cout << "Player hand value: " << std::endl;
-        player->PrintHand();
-    }
-
-    std::cout << " " << std::endl;
-
-    std::cout << "Flop value: " << std::endl;
-    flop->PrintHand();
+    table->ShowFlop();
 
     return 0;
 }

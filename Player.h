@@ -11,30 +11,9 @@
 
 class Player {
 public:
+
     void addCard(std::unique_ptr<Card> card) {
         hand_.push_back(std::move(card));
-    }
-
-    int getHandValue() const
-    {
-        int value = 0;
-        int aces = 0;
-        for (const std::unique_ptr<Card>& card : hand_) {
-            int cardValue = card->getRank();
-            if (cardValue >= 10) {
-                cardValue = 10;
-            } else if (cardValue == ACE) {
-                aces++;
-                cardValue = 11;
-            }
-            value += cardValue;
-        }
-
-        while (value > 21 && aces > 0) {
-            value -= 10;
-            aces--;
-        }
-        return value;
     }
 
     void PrintHand() const
@@ -46,15 +25,6 @@ public:
 
         std::cout << " " << std::endl;
     }
-
-    void DrawXCards(int X, Deck deck)
-    {
-        for (int i = 0; i < X; i++)
-        {
-            addCard(deck.drawCard());
-        }
-    }
-
 
 private:
     std::vector<std::unique_ptr<Card>> hand_;
