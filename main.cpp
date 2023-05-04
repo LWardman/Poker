@@ -6,25 +6,14 @@
 
 int main()
 {
-    std::vector<std::string> Ranks =
-            {"ACE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN", "JACK", "QUEEN", "KING"};
-
-    std::vector<std::string> Suits =
-            {"HEARTS", "DIAMONDS", "CLUBS", "SPADES"};
-
-    Deck deck;
-    deck.shuffledeck();
-
     int NumPlayers = 8;
 
-    auto* table = new Table(NumPlayers, deck);
+    auto* table = new Table(NumPlayers);
 
     table->DealCards();
-
     table->DealFlop();
 
     table->ShowAllHands();
-
     table->ShowFlop();
 
     return 0;

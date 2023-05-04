@@ -10,21 +10,23 @@
 
 class Table {
 public:
-    Table(unsigned int NumPlayers, Deck deck) : deck_(std::move(deck))
+    Table(unsigned int NumPlayers)
     {
         for (int i = 0; i < NumPlayers; i++)
         {
             auto* player = new Player();
             players.push_back(player);
         }
+
+        deck.shuffledeck();
     };
 
     void DealCards()
     {
         for (Player* player : players)
         {
-            player->addCard(deck_.drawCard());
-            player->addCard(deck_.drawCard());
+            player->addCard(deck.drawCard());
+            player->addCard(deck.drawCard());
         }
     }
 
@@ -32,7 +34,7 @@ public:
     {
         for (int i = 0; i < 5; i++)
         {
-            flop->addCard(deck_.drawCard());
+            flop->addCard(deck.drawCard());
         }
     }
 
@@ -53,7 +55,7 @@ public:
 
 
 private:
-    Deck deck_;
+    Deck deck;
     std::vector<Player*> players;
     Player* flop = new Player();
 };
