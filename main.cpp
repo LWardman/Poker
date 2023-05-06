@@ -13,5 +13,11 @@ int main()
     table->ShowAllHands();
     table->ShowFlop();
 
+    std::cout << "Deck size before reset: " << table->GetDeckSize() << std::endl;
+
+    table->ResetDeck();
+
+    std::cout << "Deck size after reset: " << table->GetDeckSize() << std::endl;
+
     return 0;
 }
