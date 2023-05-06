@@ -15,8 +15,7 @@ public:
     {
         for (int i = 0; i < NumPlayers; i++)
         {
-            auto* player = new Player();
-            players.push_back(player);
+            players.push_back(std::make_unique<Player>());
         }
 
         deck.shuffledeck();
@@ -24,10 +23,19 @@ public:
 
     void DealCards()
     {
-        for (Player* player : players)
+        for (const std::unique_ptr<Player>& player : players)
         {
             player->addCard(deck.drawCard());
             player->addCard(deck.drawCard());
+        }
+    }
+
+    void ReturnPlayerCards()
+    {
+        for (const std::unique_ptr<Player>& player : players)
+        {
+            deck.AddCard(player->ReturnCard());
+            deck.AddCard(player->ReturnCard());
         }
     }
 
@@ -39,6 +47,14 @@ public:
         }
     }
 
+    void ReturnFlop()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            deck.AddCard(flop->ReturnCard());
+        }
+    }
+
     void ShowFlop()
     {
         std::cout << "Flop value: " << std::endl;
@@ -47,17 +63,28 @@ public:
 
     void ShowAllHands()
     {
-        for (Player* player : players)
+        for (const std::unique_ptr<Player>& player : players)
         {
             std::cout << "Player hand value: " << std::endl;
             player->PrintHand();
         }
     }
 
+    int GetDeckSize()
+    {
+        return deck.GetDeckSize();
+    }
+
+    void ResetDeck()
+    {
+        ReturnPlayerCards();
+        ReturnFlop();
+    }
+
 
 private:
     Deck deck;
-    std::vector<Player*> players;
+    std::vector<std::unique_ptr<Player>> players;
     Player* flop = new Player();
 };
 
