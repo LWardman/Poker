@@ -16,7 +16,7 @@ public:
     Deck() {
         for (int suit = HEARTS; suit <= SPADES; ++suit) {
             for (int rank = ACE; rank <= KING; ++rank) {
-                cards_.push_back(std::make_unique<Card>(static_cast<Rank>(rank), static_cast<Suit>(suit)));
+                deck_.push_back(std::make_unique<Card>(static_cast<Rank>(rank), static_cast<Suit>(suit)));
             }
         }
     }
@@ -24,21 +24,31 @@ public:
     void shuffledeck() {
         std::random_device rd;
         std::mt19937 g(rd());
-        shuffle(cards_.begin(), cards_.end(), g);
+        shuffle(deck_.begin(), deck_.end(), g);
     }
 
     std::unique_ptr<Card> drawCard() {
-        if (cards_.empty()) {
+        if (deck_.empty()) {
             return nullptr;
         }
-        std::unique_ptr<Card> card = std::move(cards_.back());
-        cards_.pop_back();
+        std::unique_ptr<Card> card = std::move(deck_.back());
+        deck_.pop_back();
         return card;
     }
 
+    void AddCard(std::unique_ptr<Card> card) {
+        deck_.push_back(std::move(card));
+    }
+
+    int GetDeckSize()
+    {
+        return deck_.size();
+    }
+
+
 
 private:
-    std::vector<std::unique_ptr<Card> > cards_;
+    std::vector<std::unique_ptr<Card> > deck_;
 };
 
 
