@@ -16,6 +16,15 @@ public:
         hand_.push_back(std::move(card));
     }
 
+    std::unique_ptr<Card> ReturnCard() {
+        if (hand_.empty()) {
+            return nullptr;
+        }
+        std::unique_ptr<Card> card = std::move(hand_.back());
+        hand_.pop_back();
+        return card;
+    }
+
     void PrintHand() const
     {
         for (const std::unique_ptr<Card>& card : hand_)
