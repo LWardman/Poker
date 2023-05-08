@@ -12,6 +12,8 @@
 class Player {
 public:
 
+    explicit Player(int PlayerNum) : PlayerNum_(PlayerNum) {}
+
     void addCard(std::unique_ptr<Card> card) {
         hand_.push_back(std::move(card));
     }
@@ -35,8 +37,37 @@ public:
         std::cout << " " << std::endl;
     }
 
+    bool HandEmpty()
+    {
+        return hand_.empty();
+    }
+
+    [[nodiscard]] unsigned int GetPlayerNumber() const
+    {
+        return PlayerNum_;
+    }
+
+    void Check()
+    {
+
+    }
+
+    void Call()
+    {
+
+    }
+
+    void Raise()
+    {
+
+    }
+
 private:
     std::vector<std::unique_ptr<Card>> hand_;
+
+    unsigned int Chips = 100;
+
+    unsigned int PlayerNum_;
 
     std::vector<std::string> Ranks =
             {"ACE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN", "JACK", "QUEEN", "KING"};
