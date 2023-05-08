@@ -15,7 +15,7 @@ public:
     {
         for (int i = 0; i < NumPlayers; i++)
         {
-            players.push_back(std::make_unique<Player>());
+            players.push_back(std::make_unique<Player>(i));
         }
 
         deck.shuffledeck();
@@ -34,8 +34,10 @@ public:
     {
         for (const std::unique_ptr<Player>& player : players)
         {
-            deck.AddCard(player->ReturnCard());
-            deck.AddCard(player->ReturnCard());
+            while (player->HandEmpty())
+            {
+                deck.AddCard(player->ReturnCard());
+            }
         }
     }
 
@@ -70,7 +72,7 @@ public:
         }
     }
 
-    int GetDeckSize()
+    unsigned long long GetDeckSize()
     {
         return deck.GetDeckSize();
     }
@@ -81,11 +83,34 @@ public:
         ReturnFlop();
     }
 
+    void DetermineWinner()
+    {
+
+    }
+
+    void MoveBlindForward()
+    {
+        std::rotate(players.begin(), players.begin() + 1, players.end());
+    }
+
+    void PrintPlayerNumbers()
+    {
+        for (const std::unique_ptr<Player>& player : players)
+        {
+            std::cout << player->GetPlayerNumber();
+        }
+        std::cout << " " << std::endl;
+    }
+
 
 private:
     Deck deck;
+
     std::vector<std::unique_ptr<Player>> players;
-    Player* flop = new Player();
+
+    Player* flop = new Player(100);
+
+    unsigned int Pot = 0;
 };
 
 #endif //CARDS_TABLE_H
