@@ -31,7 +31,7 @@ public:
     {
         for (const std::unique_ptr<Card>& card : hand_)
         {
-            std::cout << Ranks[card->getRank() - 1] << " OF " << Suits[card->getSuit()] << std::endl;
+            std::cout << Ranks[card->GetRank() - 1] << " OF " << Suits[card->GetSuit()] << std::endl;
         }
 
         std::cout << " " << std::endl;
