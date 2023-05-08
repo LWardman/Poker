@@ -19,5 +19,11 @@ int main()
 
     std::cout << "Deck size after reset: " << table->GetDeckSize() << std::endl;
 
+    std::cout << "Player order before moving blind forward : " << std::endl;
+    table->PrintPlayerNumbers();
+    table->MoveBlindForward();
+    std::cout << "Player order after" << std::endl;
+    table->PrintPlayerNumbers();
+
     return 0;
 }
