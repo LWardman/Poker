@@ -40,7 +40,7 @@ public:
         deck_.push_back(std::move(card));
     }
 
-    int GetDeckSize()
+    unsigned long long GetDeckSize()
     {
         return deck_.size();
     }
