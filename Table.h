@@ -15,7 +15,7 @@ public:
     {
         for (int i = 0; i < NumPlayers; i++)
         {
-            players.push_back(std::make_unique<Player>(i));
+            players.push_back(std::make_unique<Player>(i + 1));
         }
 
         deck.shuffledeck();
