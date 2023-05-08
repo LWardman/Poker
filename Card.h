@@ -17,8 +17,8 @@ class Card {
 public:
     Card(Rank rank, Suit suit) : rank_(rank), suit_(suit) {}
 
-    Rank getRank() const { return rank_; }
-    Suit getSuit() const { return suit_; }
+    [[nodiscard]] Rank GetRank() const { return rank_; }
+    [[nodiscard]] Suit GetSuit() const { return suit_; }
 
 private:
     Rank rank_;
