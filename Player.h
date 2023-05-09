@@ -62,10 +62,18 @@ public:
 
     }
 
+    void DetermineHandValue()
+    {
+
+    }
+
 private:
     std::vector<std::unique_ptr<Card>> hand_;
 
     unsigned int Chips = 100;
+
+    // Takes a value from 1 - 10, 1 is highest.
+    unsigned int HandValue = 10;
 
     unsigned int PlayerNum_;
 

@@ -111,6 +111,8 @@ private:
     Player* flop = new Player(100);
 
     unsigned int Pot = 0;
+
+    unsigned int CurrentCall = 0;
 };
 
 #endif //CARDS_TABLE_H
